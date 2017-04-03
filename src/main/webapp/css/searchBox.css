@@ -1,0 +1,76 @@
+html, body {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	
+}
+#searchBox {
+	width: 100%;
+	height: 30%;
+	position: relative;
+	top: 20%;
+	margin: 0px auto;
+}
+#searchBox > h1 {
+	font-size: 60px;
+	margin: auto auto;
+	text-align: center;
+	color: rgb(63,132,192);
+	width: 60%;
+}
+#search {
+	width: 60%;
+	height: 45px;
+	margin-top: 20px;
+	margin-left: 17%;
+	margin-right: 0%;
+	font-size: 20px;
+	float: left;
+}
+#searchButton {
+	height: 45px;
+	width: 5%;
+	margin-top: 20px;
+	margin-left: 10px;
+	font-size: 20px;
+	float: left;
+}
+#searchUpdate {
+	top: 130px;
+	width: inherit;
+	height: 150px;
+	padding: 0px;
+	margin: 0px 20px;
+	z-index: 999;
+	overflow: scroll;
+	display: block;
+	clear: right;
+}
+#messageBox{
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+	height: 10%;
+	top: 5%;	
+	position: relative;
+	text-align: center;
+	margin: 0px auto;
+}
+#liveSearch {
+	width: 80%;
+	height: 130px;
+	margin: 0px 20px;
+	overflow: scroll;
+	display: none;
+}
+#liveSearchResult{
+	display: none;
+}
+
+.mainWrap{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	text-align: center;
+}

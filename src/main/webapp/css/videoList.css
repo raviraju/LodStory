@@ -1,0 +1,44 @@
+#videoList{
+	width: 50%;
+	table-layout: fixed;
+}
+.videoInfo{
+	padding: 20px;
+}
+.videoThumbnail{
+	width: 120px;
+}
+.videoThumbnailImage{
+	width: 100px;
+	height: 100px;
+}
+h3{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.ratingInfo{
+	list-style: outside none none;
+	margin: 0; 
+	padding: 0;
+}
+.ratingInfo>li:first-child:before{
+	display: none;
+}
+.ratingInfo>li:before{
+	content: "•";
+    margin: 0 5px;
+}
+.ratingInfo>li{
+	display: inline-block;
+}
+td{
+	text-align: left;
+}
+#secondarySearch{
+	font-size: 1em;
+	position: relative;
+	font-family: JennaSue, sans-serif;
+	text-align: center;
+	width: 100%;
+	padding: 20px;
+}

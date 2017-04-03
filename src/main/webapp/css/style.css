@@ -1,0 +1,221 @@
+html, body {
+	margin: 10px;
+	padding: 0px;
+	border: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+    height:100%;
+    width: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+#body {
+	display: none;
+}
+
+img {
+	display: block;
+	float: left;
+	max-width: 450px;
+	max-height: 500px;
+	width: auto;
+	height: auto;
+}
+
+.node circle {
+	cursor: pointer;
+	stroke: steelblue;
+	stroke-width: 1.5px;
+}
+.node text {
+	width: 115px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 12px;
+	color: black;
+	z-index: 9999;
+}
+.mainWrap{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	text-align: center;
+}
+path.link {
+	fill: none;
+	stroke: grey;
+	stroke-width: 3px;
+}
+path.linkHighlight{
+	fill: none;
+	stroke: #ff6600;
+	stroke-width: 4.5px;
+}
+.currentPath {
+	stroke: #ff6600;
+}
+.mainContent {
+	width: 100%;
+	height: 580px;
+	position: absolute;
+	top: 50px;
+	margin: 10px;
+	z-index: 0;
+	text-align: left;
+}
+#message {
+	width: 200px;
+	height: 100px;
+	border: solid black 2px;
+	background: #ffe6e6;
+	position: fixed;
+	left: 20px;
+	top: 70px;
+	overflow: scroll;
+}
+#history {
+	width: 200px;
+	height: 500px;
+	border: solid black 2px;
+	background: #d6f5ff;
+	position: fixed;
+	right: 30px;
+	top: 70px;
+	overflow: scroll;
+}
+
+/*h2 {
+	position: absolute;
+	top: -15px;
+	left: 5px;
+}*/
+#draw {
+	position: relative;
+	height: 45px;
+	width: 12%;
+	margin: 20px 10px 0px;
+
+	font-size: 20px;
+}
+#chart {
+	overflow: scroll;
+}
+svg {
+	position: relative;
+	left: 30px;
+}
+#nodeInfo {
+	width: 250px;
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+	font-family: monaco;
+	-webkit-transform: rotate(10deg);
+	-o-transform: rotate(10deg);
+	-moz-transform: rotate(10deg);
+}
+#stickyNote{
+	width: 250px;
+}
+#nodeInfo > h3 {
+	position: absolute;
+	left: 50px;
+	top: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+.infoContent {
+	font-size: 15px;
+	font-weight: bold;
+}
+#name {
+	position: absolute;
+	top: 70px;
+	left: 20px;
+}
+#catalog {
+	position: absolute;
+	top: 120px;
+	left: 20px;
+}
+#relation {
+	width: 260px;
+	font-size: 15px;
+	position: absolute;
+	background: rgb(230,230,230);
+	z-index: 1000;
+	border-radius: 7px;
+}
+.canvas-alert {
+	width: 50%;
+	height: 100%;
+	margin: 0 auto;
+	padding: 10px;
+}
+.progress {
+	padding: 7px;	
+}
+#relationWrap{
+	width: 100%;
+	height: 100%;
+}
+#relationContent {
+	width: 95%;
+	position: relative;
+	left: 0px;
+	font-size: 12px;
+	color: black;
+	margin: 2px;
+	border: 0px;
+}
+/*#relation > h5{
+	font-size: 10px;
+	position: relative;
+	left: 220px;
+	bottom: 0px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+#relation > h5:hover{
+	font-size: 11px;
+	position: relative;
+	left: 220px;
+	color: red;
+	cursor: pointer;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}*/
+.close{
+	padding: 5px;
+	z-index: 1001;
+}
+
+.filler{
+	position: relative;
+	clear: both;
+	width: 100%;
+	height: 1px;
+}
+
+/*Section devoted to the video recommendations*/
+#recommendedVideos{
+	display: block;
+	position: relative;
+	max-width: 90%;
+	margin: auto auto;
+	top: 20%;
+}
+.thumbnailCell{
+	width: 100px;
+	height: 100px;
+	margin: 20px 10px;
+	float: left;
+}
+.thumbnailCell > img{
+	width: 100px;
+	height: 100px;
+}

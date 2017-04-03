@@ -1,0 +1,294 @@
+/*
+* LODStory Story Editor CSS
+* Copyright 2014, LOD Story Team - University of Southern California - Information Sciences Institute
+*/
+
+
+
+/*GLOBAL*/
+.fullWidth {
+	width: 100%;
+}
+.fullHeight {
+	height: 100%;
+}
+.height1 {
+	height: 7%;
+}
+.height2 {
+	height: 16%;
+}
+.height3 {
+	height: 20%;
+}
+.height4 {
+	height: 25%;
+}
+
+h5{
+	font-size: 10px;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
+/*ELEMENTS*/
+
+#sortable {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+#sortable li {
+	height: 100%;
+	margin: 0 3px 3px 3px;
+	padding: 0.4em;
+	padding-left: 1.5em;
+	display: inline;
+}
+
+#generateVideoEditor {
+	position: absolute;
+	top: 48%
+	left: 48%;
+}
+
+.btn-nav {
+	height: 100%;
+	width: 200px;
+}
+.nodeNavBar {
+	height:8%;
+	font-size: 16px;
+	z-index: 2;
+}
+
+.nodeNavBarElem {
+	padding: 0px;
+	margin: 0px;
+	font-size: 14px;
+	z-index: 2;
+}
+.nav-justified {
+	height: 100%;
+}
+.nodeNavBarUL {
+	height: 100%;
+}
+.nodeNavBarLI {
+	height: 100%;
+}
+/*Node Element Bar*/
+.nodeElementBar {
+	height: 69%;
+	overflow-x: scroll;
+    overflow:hidden;
+	text-align: left;
+	z-index: 2;
+
+}
+.node-element-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 20;
+	position: relative;
+	display: inline-block;
+}
+
+.nodeElementBarContentWrap {
+	width: 47%;
+	height: 100px;
+	float: left;
+    position: relative;
+}
+
+.nodeElementBarContentWrap img {
+    display: block;
+    width: auto;
+    height : auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.nodeInformation {
+	display: none;
+}
+
+/*End of Node Element Bar*/
+/*Movie Nav Bar*/
+.movieNavBarWrap {
+	overflow-x: scroll;
+	overflow: hidden;
+    height: 200px;
+    border: 2px dashed black;
+}
+
+.movie-nav-bar {
+	list-style-type: none;
+	margin: 0px;
+	display: inline-block;
+}
+
+.movie-nav-item-wrap{
+	display: inline;
+	width: 20%;
+	height: 95%;
+	background: yellow;
+}
+
+.movieNavElementWrap {
+	width: 20%;
+	height: 100%;
+	position: relative;
+	top: 1%;
+	margin: 2px;
+	float: left;
+	text-align: left;
+}
+
+/*End of Movie Nav Bar*/
+
+.nodeElementOperation {
+	height: 300px;
+}
+
+.nodeElement {
+	width: 100%;
+	position: relative;
+	margin: 0 auto;
+	text-align: center;
+}
+.nodeElementContentWrap {
+	width: 50%;
+	padding: 5px;
+	float: left;
+	cursor: pointer;
+	opacity: 0;
+}
+
+.nodeElementEditing {
+	width: 24%;
+	height: 60%;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	margin: 0 auto;
+	text-align: center;
+}
+.element-list-wrap {
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+/***************************Animation*****************************/
+.slides2 {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.slide {
+	width: 100%;
+}
+.slides2-wrapper{
+	text-align: center;
+}
+
+
+.audioPlayer {
+	width: 100%;
+	z-index: 2;
+}
+.imgPreview {
+	height: 100%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.textDescriptionEdit {
+	position: relative;
+	left: 96%;
+	top: -83%;
+	width: 80px;
+}
+.textDescriptionCancel {
+	position: relative;
+	left: 82.5%;
+	top: -40%;
+	width: 80px;
+}
+
+.btnOpt {
+	width: 80%;
+	height: 35%;
+	margin-top: 20%;
+}
+.slideProgressBar {
+	width: 98%;
+	height: 2%;
+	position: absolute;
+	bottom: 17%;
+	left: 1%;
+    display: none;
+}
+.PreviewElement img{
+	height: 98%;
+}
+
+.movieNavBar {
+	height: 100%;
+	background: yellow;
+}
+
+.movieNavElement {
+	height: 50%;
+}
+.movieNavOperation {
+	font-size: 10px;
+	bottom: 5px;
+	float: right;
+}
+
+.Enable {
+	opacity: 1;
+	-webkit-animation: enterWrapEnable 0.8s ;
+	-o-animation: enterWrapEnable 0.8s ;
+	-moz-animation: enterWrapEnable 0.8s ;
+	animation: enterWrapEnable 0.8s ;
+}
+@keyframes Enable {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+@-webkit-keyframes Enable {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+@-o-keyframes Enable {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+@-moz-keyframes Enable {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+
+.mainScreenTemp {
+	position: absolute;
+	cursor: pointer;
+}
+
+#audioPlayer {
+ width: 100%;
+}
+
+/*	Used by old drag&drop method
+.ui-draggable-dragging {
+	z-index: 2;
+}
+.title > content {
+	z-index: 3;
+}
+*/

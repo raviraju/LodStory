@@ -1,0 +1,382 @@
+/*
+* LODStory Story Editor CSS
+* Copyright 2014, LOD Story Team - University of Southern California - Information Sciences Institute
+*/
+
+
+
+/*GLOBAL*/
+.fullWidth {
+	width: 100%;
+}
+.fullHeight {
+	height: 100%;
+}
+.height1 {
+	height: 7%;
+}
+.height2 {
+	height: 16%;
+}
+.height3 {
+	height: 20%;
+}
+.height4 {
+	height: 25%;
+}
+.floatLeft {
+	float: left;
+}
+.floatRight {
+	float: right;
+}
+h5{
+	font-size: 10px;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
+/*ELEMENTS*/
+
+#videoEditor {
+
+}
+
+#sortable {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+#sortable li {
+	height: 100%;
+	margin: 0 3px 3px 3px;
+	padding: 0.4em;
+	padding-left: 1.5em;
+	display: inline;
+}
+
+
+
+
+
+
+
+#generateVideoEditor {
+	position: absolute;
+	top: 48%
+	left: 48%;
+}
+.stepNavigator{
+	width: inherit;
+	height: 33px;
+}
+.btn-nav {
+	height: 100%;
+	width: 200px;
+}
+.nodeNavBar {
+	height:8%;
+	position: absolute;
+	top: 6%;
+	left: 1%;
+	font-size: 16px;
+}
+
+.nodeNavBarElem {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	font-size: 14px;
+}
+.nav-justified {
+	height: 100%;
+}
+.nodeNavBarUL {
+	height: 100%;
+}
+.nodeNavBarLI {
+	height: 100%;
+}
+/*Node Element Bar*/
+.nodeElementBar {
+	width: 29%;
+	height: 69%;
+	position: absolute;
+	top: 11.5%;
+	left: 1%;
+	overflow-x: scroll;
+	text-align: left;
+	border: 1px solid;
+	border-radius: 10px;
+	border-color: gray;
+	z-index: 99;
+
+}
+.node-element-list {
+	width: 99%;
+	list-style-type: none;
+	margin: 0;
+	padding: 20;
+	/*background: yellow;*/
+	position: relative;
+	display: inline-block;
+}
+.nodeElementBarContentWrap {
+	width: 40%;
+	height: 20%;
+	/*margin: 3%;*/
+	float: left;
+}
+.nodeElementBarContentWrap > img {
+	width: 85%;
+	height: 100%
+}
+.movieNavElementWrap > img {
+	height: 100%;
+	width: 100%;
+}
+.nodeInformation {
+	display: none;
+}
+
+/*End of Node Element Bar*/
+/*Movie Nav Bar*/
+.movieNavBarWrap {
+	width: 98%;
+	height: 17%;
+	position: absolute;
+	left: 1%;
+	bottom: 1%;
+    border: 1px solid gray;
+    border-radius: 10px;
+	overflow-x: scroll;
+	overflow-y:hidden;
+
+}
+.movie-nav-bar {
+	width: 80%;
+	list-style-type: none;
+	margin: 0px;
+	padding: 50px;
+	
+	display: inline-block;
+}
+.movie-nav-item-wrap{
+	display: inline;
+	width: 20%;
+	height: 95%;
+	background: yellow;
+}
+.movieNavElementWrap {
+	width: 12%;
+	height: 95%;
+	position: relative;
+	top: 1%;
+	margin: 2px;
+	float: left;
+	text-align: left;
+	border-radius: 5px;
+}
+
+/*End of Movie Nav Bar*/
+
+.nodeElementOperation {
+	width: 68%;
+	height: 69%;
+	position: absolute;
+	top: 11.5%;
+	right: 1%;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+
+.nodeElementBarContent {
+   
+}
+.nodeElement {
+	width: 100%;
+	position: relative;
+	margin: 0 auto;
+	text-align: center;
+}
+.nodeElementContentWrap {
+	width: 50%;
+	padding: 5px;
+	float: left;
+	cursor: pointer;
+	opacity: 0;
+}
+.nodeElementContent {
+	width: 100%;
+	height: 100%;
+}
+.nodeElementEditing {
+	width: 24%;
+	height: 60%;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	margin: 0 auto;
+	border: 1px solid black;
+	text-align: center;
+}
+.element-list-wrap {
+	width: 100%;
+	height: 100%;
+	overflow: scroll;
+}
+.playButtonGroup {
+	width: 100%;
+	height: 6%;
+	position: absolute;
+	top: 70%;
+	left: 0%;
+	right: 5%;
+	text-align: center;
+	z-index: 999;
+}
+.moviePreview {
+	width: 100%;
+	height: 70%;
+	position: absolute;
+	top: 0%;
+	right: 0%;
+	margin: 0 auto;
+}
+/***************************Animation*****************************/
+.slides2 {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.slide {
+	width: 100%;
+}
+.slides2-wrapper{
+	text-align: center;
+}
+
+
+.audioPlayer {
+	width: 100%;
+}
+.imgPreview {
+	height: 100%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.audioDescriptionWrap{
+	width: 100%;
+	height: 24%;
+	position: absolute;
+	bottom: 0%;
+
+}
+.textDescriptionEdit {
+	position: relative;
+	left: 96%;
+	top: -83%;
+	width: 80px;
+}
+.textDescriptionCancel {
+	position: relative;
+	left: 82.5%;
+	top: -40%;
+	width: 80px;
+}
+.textDescription {
+	width: 83%;
+	height: 90%;
+	margin-left: 5px;
+	margin-top: 7px;
+	position: absolute;
+	border: 1px solid gray;
+    border-radius: 10px;
+}
+.textDescriptionButtonGroup {
+	width: 17%;
+	height: 100%;
+	position: absolute;
+	right: 0px;
+	text-align: center;
+}
+.btnOpt {
+	width: 80%;
+	height: 35%;
+	margin-top: 20%;
+}
+.slideProgressBar {
+	width: 98%;
+	height: 2%;
+	position: absolute;
+	bottom: 17%;
+	left: 1%;
+
+}
+.PreviewElement img{
+
+	height: 98%;
+}
+
+
+
+.movieNavBar {
+	height: 100%;
+	position: absolute;
+	background: yellow;
+}
+
+.movieNavElement {
+	height: 50%;
+}
+.movieNavOperation {
+	font-size: 10px;
+	bottom: 5px;
+	float: right;
+}
+
+.Enable {
+	opacity: 1;
+	-webkit-animation: enterWrapEnable 0.8s ;
+	-o-animation: enterWrapEnable 0.8s ;
+	-moz-animation: enterWrapEnable 0.8s ;
+	animation: enterWrapEnable 0.8s ;
+}
+@keyframes Enable {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+@-webkit-keyframes Enable {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+@-o-keyframes Enable {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+@-moz-keyframes Enable {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+
+.mainScreenTemp {
+	position: absolute;
+	cursor: pointer;
+}
+
+
+#audioPlayer {
+ width: 100%;
+}
+
+/*TESTS*/
+.ui-draggable-dragging {
+	z-index: 1000;
+}
+.title > content {
+	z-index: 99999;
+}

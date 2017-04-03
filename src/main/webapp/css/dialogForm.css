@@ -1,0 +1,26 @@
+.saveForm { 
+	display:block; 
+}
+
+#dialog-form{
+	display: none;
+}
+
+input.text { 
+	margin-bottom:12px; 
+	width:200px; 
+	padding: 
+	.4em; 
+}
+fieldset { 
+	padding:0; 
+	border:0; 
+	margin-top:25px; 
+}
+.no-close .ui-dialog-titlebar-close {
+	display: none;
+}
+.ui-dialog{
+	z-index:6;
+    background:#ffffff;
+}

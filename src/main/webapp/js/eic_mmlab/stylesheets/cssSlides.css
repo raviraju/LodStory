@@ -1,0 +1,122 @@
+/***** Settings *****/
+/***** Mixins *****/
+/***** Rules *****/
+.slides {
+  width: 100%;
+  height: 100%;
+  /*border: 1px solid black;*/
+
+  /*margin: 5em auto;*/
+
+}
+.slide {
+  width: 100%;
+   height: 100%;
+  overflow: hidden;
+  /*position: absolute;*/
+
+}
+.slide .inner {
+  width: 100%;
+  height: 100%;
+}
+
+/**Controls the fading out and whatever**/
+.slide.transition-out {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 0.7s;
+  -moz-transition-property: opacity;
+  -moz-transition-duration: 0.7s;
+  -o-transition-property: opacity;
+  -o-transition-duration: 0.7s;
+  -ms-transition-property: opacity;
+  -ms-transition-duration: 0.7s;
+  transition-property: opacity;
+  transition-duration: 0.7s;
+}
+.slide.titleSlide {
+  color: #E20177;
+}
+.slide.titleSlide .inner {
+  -webkit-transform: rotate(-7deg);
+  -moz-transform: rotate(-7deg);
+  -o-transform: rotate(-7deg);
+  -ms-transform: rotate(-7deg);
+  transform: rotate(-7deg);
+}
+.slide.titleSlide h1 {
+  padding: 1em 1em 2em 1em;
+  font-size: 4em;
+}
+.slide.image {
+  /*background: rgba(0, 0, 0, 0);*/
+}
+.slide.image .inner {
+  display: table;
+  text-align: center;
+}
+.slide.image .inner > :first-child {
+  display: table-cell;
+  vertical-align: middle;
+}
+.slide.video {
+ /* background: black;*/
+}
+.slide.video video {
+  width: 100%;
+  height: 100%;
+}
+.slide.outro {
+  color: #E20177;
+  /* align share buttons */
+
+}
+.slide.outro h1 {
+  padding: 1em 1em 2em 1em;
+  font-size: 2em;
+}
+.slide.outro h2 {
+  padding: 5em 1em 0em 1em;
+  font-size: 2em;
+}
+.slide.outro .share {
+  margin-left: 2em;
+}
+.slide.outro .share > div {
+  float: left;
+}
+.slide.image img,
+.slide.date .calendar {
+     width: 100%;
+      height: 100%;
+ /* -moz-transform-origin: 50% 50%;
+  -moz-transition: -moz-transform 30s linear;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-transition: -webkit-transform 30s linear;
+  -o-transform-origin: 50% 50%;
+  -o-transition: -o-transform 30s linear;
+  -ms-transform-origin: 50% 50%;
+  -ms-transition: -ms-transform 30s linear;
+  transform-origin: 50% 50%;
+  transition: transform 30s linear;*/
+}
+.slide .zoom {
+     width: 100%;
+      height: 100%;
+  -moz-transform: scale(2,2) rotate(10deg);
+  -moz-transform-origin: 50% 50%;
+  -moz-transition: -moz-transform 30s linear;
+  -webkit-transform: scale(2,2) rotate(10deg);
+  -webkit-transform-origin: 50% 50%;
+  -webkit-transition: -webkit-transform 30s linear;
+  -o-transform: scale(2,2) rotate(10deg);
+  -o-transform-origin: 50% 50%;
+  -o-transition: -o-transform 30s linear;
+  -ms-transform: scale(2,2) rotate(10deg);
+  -ms-transform-origin: 50% 50%;
+  -ms-transition: -ms-transform 30s linear;
+  transform: scale(2,2) rotate(10deg);
+  transform-origin: 50% 50%;
+  transition: transform 30s linear;
+}

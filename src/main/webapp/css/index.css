@@ -1,0 +1,96 @@
+a{
+	text-decoration: none;
+	
+}
+.main-title {
+	width: 100%;
+	height: 65%;
+	text-align: center;
+	color: white;
+	background: rgb(50,118,177);
+}
+.title-text {
+	position: relative;
+	top: 32%;
+	font-size: 90px;
+	font-weight: bold;
+}
+.second-title-text {
+	position: relative;
+	top: 31%;
+	font-size: 26px;
+}
+.demo-btn-group {
+	position: relative;
+	top: 33%;
+	
+}
+.relative-link {
+	position: relative;
+	top: 35%;
+}
+
+.btn-demo {
+	background: transparent;
+	border: solid 1px white;
+	color: white;
+	margin: 10px;
+}
+.btn-demo:hover{
+	background: white;
+}
+.btn-rel {
+	background: transparent;
+	color: white;
+	border: solid 1px transparent;
+}
+.btn-rel:hover {
+	color: white;
+	border: solid 1px white;
+}
+.main-content {
+	position: relative;
+	width: 90%;
+	padding-top: 40px;
+	font-weight: 200;
+	margin: 10px auto;
+	background: white;
+}
+.main-content-title {
+	margin: 10px;
+	font-size: 32;
+	font-weight: bold;
+	color: rgb(50,118,177);
+}
+.main-content-text {
+	margin: 10px;
+	text-indent: 64;
+	font-size: 24;
+	font-weight: 200;
+}
+.main-content-img-wrap{
+	width: 100%;
+	text-align: center;
+}
+.main-content-img {
+	width: 60%;
+	margin: 10px auto;
+}
+.foot {
+	width: 90%;
+	font-size: 10pt;
+	font-weight: 300;
+	margin: 10px auto;
+}
+
+.demo-foot {
+	position: absolute;
+	width: 80%;
+	top: 130px;
+	left: 23px;
+	bottom: 10px;
+	font-size: 9pt;
+	font-weight: 200;
+	margin: 10px auto;
+	text-align: left;
+}

@@ -1,0 +1,81 @@
+/* Stylesheet for the demo pages */
+
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html {
+  width: 100%;
+  margin-top: 2em;
+}
+
+#main {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.slides {
+  width: 800px;
+  height: 600px;
+  border: 1px solid;
+  overflow: hidden;
+  margin-top: 2em;
+}
+
+.slide {
+  width: 800px;
+  height: 600px;
+  overflow: hidden;
+  position: absolute;
+  background-color: white;
+}
+
+.slide.transition-out {
+  opacity : 0;
+  -webkit-transition-property : opacity;
+  -webkit-transition-duration : 0.7s;
+}
+
+.slide.image, .slide.video {
+  text-align: center;
+}
+
+.slide.title h1 {
+  padding: 1em;
+}
+
+.slide.video {
+  background-color: black;
+}
+
+.slide.video video {
+  width: 100%;
+  height: 100%;
+}
+
+/*.slide > img {
+-moz-transform-origin: 50% 50%; 
+-moz-transition: -moz-transform 30s linear; 
+-webkit-transform-origin: 50% 50%; 
+-webkit-transition: -webkit-transform 30s linear; 
+-o-transform-origin: 50% 50%; 
+-o-transition: -moz-transform 30s linear; 
+-ms-transform-origin: 50% 50%; 
+-ms-transition: -ms-transform 30s linear; 
+}
+.slide > .calendar {
+-moz-transform-origin: 50% 50%; 
+-moz-transition: -moz-transform 30s linear; 
+-webkit-transform-origin: 50% 50%; 
+-webkit-transition: -webkit-transform 30s linear; 
+-o-transform-origin: 50% 50%; 
+-o-transition: -moz-transform 30s linear; 
+-ms-transform-origin: 50% 50%; 
+-ms-transition: -ms-transform 30s linear; 
+}
+.zoom {
+-moz-transform: scale(2) rotate(10deg);
+-webkit-transform: scale(2) rotate(10deg);
+-o-transform: scale(2) rotate(10deg);
+-ms-transform: scale(2) rotate(10deg);
+}*/

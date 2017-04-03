@@ -1,0 +1,129 @@
+/***** Settings *****/
+@width: 100%;
+@height: 100%;
+
+/***** Mixins *****/
+
+
+.transition (@transform, @origin) {
+  -moz-transform-origin: @origin;
+  -moz-transition: -moz-transform @transform;
+  -webkit-transform-origin: @origin;
+  -webkit-transition: -webkit-transform @transform;
+  -o-transform-origin: @origin;
+  -o-transition: -o-transform @transform;
+  -ms-transform-origin: @origin;
+  -ms-transition: -ms-transform @transform;
+  transform-origin: @origin;
+  transition: transform @transform;
+}
+
+
+.center-child-vertically() {
+  display: table;
+  
+  & > :first-child {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+/***** Rules *****/
+
+.slides {
+  /*width: @width;
+  height: @height;
+  /*border: 1px solid black;*/
+  /*margin: 5em auto;*/
+ width: 100%;
+ height: 100%;
+}
+
+.slide {
+  /*width: @width;
+  height: @height;
+  overflow: hidden;
+  position: absolute;
+  /*background: white url(/images/slide-background.jpg);*/
+ width: 100%;
+ height: 100%;
+}
+  
+  .inner {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /***** Transitions *****/
+  /* causes the puzzle pieces or whatever to disappear (or at least appear to) before the actual images show up */
+  &.transition-out {
+    opacity : 0;
+    -webkit-transition-property : opacity;
+    -webkit-transition-duration : 0.7s;
+  }
+  
+  /***** Slide types *****/
+  &.titleSlide {
+    color: #E20177;
+    
+    .inner {
+      //-webkit-transform: rotate(-7deg)
+    }
+    h1 {
+      padding: 1em 1em 2em 1em;
+      font-size: 4em;
+    }
+  }
+
+  &.image {
+    background: rgba(0, 0, 0, .5);
+    
+    .inner {
+      .center-child-vertically();
+      text-align: center;
+    }
+  }
+  
+  &.video {
+    background: black;
+    
+    video {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &.outro {          
+    color: #E20177;
+    h1 {
+      padding: 1em 1em 2em 1em;
+      font-size: 2em;
+
+
+    }
+    h2 {
+      padding: 5em 1em 0em 1em;
+      font-size: 2em;
+    }
+    /* align share buttons */
+    .share {
+      margin-left: 2em;
+      
+      > div {
+        float: left;
+      }
+    }
+  }
+  
+  
+  /***** Transitions *****/
+  &.image img, &.date .calendar {
+    .transition(30s linear, 50% 50%);
+  }
+  
+  /* this section controls the zoom in on the image slides */
+  .zoom {
+    transform: scale(2);// rotate(10deg);
+    .transition(30s linear, 50% 50%);
+  }
+}
