@@ -5,6 +5,10 @@ import edu.isi.serverbackend.localDatabase.bean.PredicateBean;
 import edu.isi.serverbackend.feature.util.*;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
 import java.util.*;
 
 import org.openrdf.query.*;
@@ -87,58 +91,81 @@ public class TripleRankRequest {
 	}
 	
 	public void rateInterestingness()throws IOException{
+		System.out.println("TripleRankRequest::rateInterestingness");
         //store relationship, weight and subject/weight
         Map<String,Double> relationshipMap = new HashMap<String,Double>();
         Map<String,Double> subjectMap = new HashMap<String,Double>();
-
-        //read from csv file
-        try {            
-            InputStream is = null;
-            BufferedReader fileReader = null;
-            
-            //fileReader = new BufferedReader(new FileReader("relationship.csv"));        
-            is = this.getClass().getResourceAsStream("/relationship1.csv");
-            fileReader = new BufferedReader(new InputStreamReader(is));
-            
-            System.out.println("Load Relationship Map from resources/relationship1.csv");
-            String line = "";
-            while ((line = fileReader.readLine()) != null) {
-                String[] content = line.split(",");
-                relationshipMap.put(content[0],Double.parseDouble(content[1]));
-                //System.out.println(content[0]+ " "+Double.parseDouble(content[1]));
-            }
-            is.close();
-            fileReader.close();
-            
-            //fileReader = new BufferedReader(new FileReader("subject.csv"));
-            is = this.getClass().getResourceAsStream("/subject.csv");
-            fileReader = new BufferedReader(new InputStreamReader(is));
-            System.out.println("Load Subject Map from resources/subject.csv");
-            while ((line = fileReader.readLine()) != null) {
-                String[] content = line.split(",");
-                subjectMap.put(content[0],Double.parseDouble(content[1]));
-                //System.out.println(content[0]+ " "+Double.parseDouble(content[1]));
-            }
-            fileReader.close();
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+             
+		String password;
+		//Read the SQL password from a file
+		BufferedReader reader = null;
+		try{
+			InputStream inputStream = getClass().getClassLoader().getResourceAsStream("SQLpw.txt");
+			reader = new BufferedReader(new InputStreamReader(inputStream));
+			password = reader.readLine();
+		}
+		catch (NullPointerException e){
+			e.getStackTrace();
+			password = "";
+		}
+        try{
+	        // create a mysql database connection
+			String myDriver = "com.mysql.jdbc.Driver";
+			String myUrl = "jdbc:mysql://localhost/lodstories";
+			Class.forName(myDriver);			
+			Connection connection = DriverManager.getConnection(myUrl, "root", password);
+	
+			Statement statement = connection.createStatement();  
+		    statement.setQueryTimeout(30);  // set timeout to 30 sec.
+		    
+		    System.out.println("\t Executing : " + "SELECT predicate, appearances, chosen FROM path_explorer");
+		    ResultSet rs = statement.executeQuery("SELECT predicate, appearances, chosen FROM path_explorer");			  
+			while(rs.next()){
+				String predicate = rs.getString("predicate");
+				int appearances = rs.getInt("appearances");				
+				int chosen = rs.getInt("chosen");
+				double weight = chosen/appearances;
+				
+				double existingWeight = 0;
+				if(relationshipMap.containsKey(predicate)){
+					existingWeight = relationshipMap.get(predicate);								
+					relationshipMap.put(predicate, existingWeight + weight);
+				}else{
+					relationshipMap.put(predicate, weight);
+				}
+			}
+			
+			System.out.println("\t Executing : " + "SELECT subject, appearances, chosen FROM path_explorer");
+		    rs = statement.executeQuery("SELECT subject, appearances, chosen FROM path_explorer");			  
+			while(rs.next()){
+				String subject = rs.getString("subject");
+				int appearances = rs.getInt("appearances");				
+				int chosen = rs.getInt("chosen");
+				double weight = chosen/appearances;
+				
+				double existingWeight = 0;
+				if(subjectMap.containsKey(subject)){
+					existingWeight = subjectMap.get(subject);				
+					subjectMap.put(subject, existingWeight + weight);
+				}else{
+					subjectMap.put(subject, weight);
+				}
+			}
+		    
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        System.out.println("Load Relationship Map");
+        for (String key : relationshipMap.keySet()) {
+            System.out.println("\t Key: " + key + ", Value: " + relationshipMap.get(key));
         }
-        
-        //for testing
-        /*
-        relationshipMap.put("http://dbpedia.org/ontology/deathPlace",1.0);
-        relationshipMap.put("http://dbpedia.org/ontology/birthPlace",1.0);
-        subjectMap.put("http://dbpedia.org/resource/French_Third_Republic",1.0);
-        subjectMap.put("http://dbpedia.org/resource/Netherlands",0.5);
-        subjectMap.put("http://dbpedia.org/resource/Zundert",0.1);
-		*/
+        System.out.println("Load Subject Map");
+        for (String key : subjectMap.keySet()) {
+            System.out.println("\t Key: " + key + ", Value: " + subjectMap.get(key));
+        }
 
         for(int i = 0 ; i < samples.size(); i++){
-        	//System.out.println("\t ******************************************");
-            /*System.out.println("\t s: " + samples.get(i).getLink().getSubject().getURI() + 
-            				   "\t p: " + samples.get(i).getLink().getPredicate() +
-            				   "\t o: " + samples.get(i).getLink().getObject().getURI());*/
+
             double factor1, factor2;
             factor1 = 0;
             factor2 = 0;
@@ -147,10 +174,12 @@ public class TripleRankRequest {
             String urlPredicate = samples.get(i).getLink().getPredicate();
             String[] predicateArr = urlPredicate.split("/");
             String predicate = predicateArr[predicateArr.length -1];
-            //System.out.println("predicate string : " + predicate);
-            if( relationshipMap.containsKey(predicate) ){
+           
+            
+            if( relationshipMap.containsKey(predicate) ){            	
                 factor1 = relationshipMap.get(predicate);
-                 //System.out.println("\t predicate factor f1: " + factor1);
+                //System.out.println("\t predicate string : " + predicate);
+                //System.out.println("\t predicate factor f1: " + factor1);
             }
             //check sample
             if(samples.get(i).getLink().isSubjectConnection()){
@@ -167,11 +196,19 @@ public class TripleRankRequest {
             }
             //set interestness
             samples.get(i).setInterestingness(factor1 * factor2);
-            // System.out.println("\t Interestingness: " + samples.get(i).getInterestingness());
+            if(factor1 != 0 && factor2 != 0){
+            	System.out.println("\t ******************************************");
+                System.out.println("\t s: " + samples.get(i).getLink().getSubject().getURI() + 
+                				   "\t p: " + samples.get(i).getLink().getPredicate() +
+                				   "\t o: " + samples.get(i).getLink().getObject().getURI());
+            	
+            	System.out.println("\t Interestingness: " + samples.get(i).getInterestingness());
+            }
         }
     }
 	
 	public void sortConnections(){
+		System.out.println("TripleRankRequest::sortConnections");
 		//algorithm: bubble sort // note from Dipa: WHY????
 		boolean swap = true;
 		Sample temp = null;
@@ -193,10 +230,10 @@ public class TripleRankRequest {
         int index_limit = 0;
 		for(int i=0;i<samples.size();i++){
             if( samples.get(i).getLink().isSubjectConnection()){
-                System.out.println("\t " + samples.get(i).getLink().getObject().getURI() + "  Interestingness: " + samples.get(i).getInterestingness());
+                System.out.println("\t Interestingness: " + samples.get(i).getInterestingness() + "\t " + samples.get(i).getLink().getObject().getURI());
             }
             else{
-                System.out.println("\t " + samples.get(i).getLink().getSubject().getURI() + "  Interestingness: " + samples.get(i).getInterestingness());
+                System.out.println("\t Interestingness: " + samples.get(i).getInterestingness() + "\t " + samples.get(i).getLink().getSubject().getURI());
             }
 			index_limit += 1;
 			if(index_limit > 6){

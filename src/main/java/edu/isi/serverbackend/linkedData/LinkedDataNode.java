@@ -159,8 +159,8 @@ public class LinkedDataNode {
 	    			+ "|| ?type=  <http://dbpedia.org/ontology/Organisation> "
 	    			+ "|| ?type = <http://dbpedia.org/ontology/Work>)"
 	    			+ "}}} LIMIT 500";
-			System.out.println("Using SPARQL EndPoint: " + LOCAL_SPARQL_ENDPOINT);
-			System.out.println("RUN SPARQL: " + queryStr);
+			System.out.println("\t Using SPARQL EndPoint: " + LOCAL_SPARQL_ENDPOINT);
+			System.out.println("\t RUN SPARQL: " + queryStr);
 	    	Query query = QueryFactory.create(queryStr);
 	    	QueryExecution qExe = QueryExecutionFactory.sparqlService( LOCAL_SPARQL_ENDPOINT, query );
 	    	ResultSet results = qExe.execSelect();
@@ -247,8 +247,8 @@ public class LinkedDataNode {
 	    			+ "|| ?type=  <http://dbpedia.org/ontology/Organisation> "
 	    			+ "|| ?type = <http://dbpedia.org/ontology/Work>)"
 	    			+ "}}} LIMIT 500";
-			System.out.println("Using SPARQL EndPoint: " + LOCAL_SPARQL_ENDPOINT);
-			System.out.println("RUN SPARQL: " + queryStr);
+			System.out.println("\t Using SPARQL EndPoint: " + LOCAL_SPARQL_ENDPOINT);
+			System.out.println("\t RUN SPARQL: " + queryStr);
 	    	Query query = QueryFactory.create(queryStr);
 	    	QueryExecution qExe = QueryExecutionFactory.sparqlService( LOCAL_SPARQL_ENDPOINT, query );
 	    	ResultSet results = qExe.execSelect();

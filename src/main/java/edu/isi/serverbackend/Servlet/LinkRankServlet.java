@@ -83,7 +83,6 @@ public class LinkRankServlet extends HttpServlet {
 					System.out.println("Sorting Data Elapsed milliseconds: "+(sortingEndTime - sortingStartTime));
 					System.out.println("Exporting JSON Elapsed milliseconds: "+(exportJSONendTime - exportJSONstartTime));
 					System.out.println("Total time Elapsed milliseconds: "+(System.currentTimeMillis()-startTime));
-					System.out.println("Start Caching");
 					System.out.println("**********************************************************************************************");
 			}
 		} catch (RepositoryException e) {

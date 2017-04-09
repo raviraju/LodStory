@@ -1,10 +1,12 @@
 package edu.isi.serveletdemo;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.BufferedReader;
+//import java.io.BufferedWriter;
+//import java.io.File;
+//import java.io.FileWriter;
 import java.io.IOException;
-import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,20 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.isi.serverbackend.linkedData.LinkedDataNode;
-
-import org.json.JSONException;
-import org.openrdf.query.MalformedQueryException;
-import org.openrdf.query.QueryEvaluationException;
-import org.openrdf.repository.RepositoryConnection;
-import org.openrdf.repository.RepositoryException;
-import org.openrdf.repository.http.HTTPRepository;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
-import edu.isi.serverbackend.request.*;
-
 /**
  * Servlet implementation class LinkRankingServlet
  */
@@ -39,11 +27,15 @@ public class LiveDemoPageServlet extends HttpServlet {
     //private static final long serialVersionUID = 1L;
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public LiveDemoPageServlet() {
         super();       
-        try{
+        /*try{
             File file = new File("data.csv");
             
             // if file doesnt exists, then create it
@@ -57,7 +49,7 @@ public class LiveDemoPageServlet extends HttpServlet {
         
         } catch(Exception e){
          System.out.println("exception create data.csv");   
-        }
+        }*/
 
     }
 
@@ -66,36 +58,93 @@ public class LiveDemoPageServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        System.out.println("livedemo servelet doGet " + request);
+        System.out.println("livedemo servlet doGet " + request);
     }
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String referrer = request.getHeader("referer");
-        System.out.println("post request received by livedemo servlet");
+
         //Always call the encoding before anything else
 		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
 		try {
 			String subject = request.getParameter("subject");
 	        String predicate = request.getParameter("predicate");
 	        String object = request.getParameter("object");    				
 			String chosenString = request.getParameter("chosen");
 			boolean chosen = Boolean.parseBoolean(chosenString);
-                
-                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
-                Date date = new Date();
-                
-                String msg = dateFormat.format(date) + "," + subject + "," + predicate + "," + object + "," + chosen;
-                
+            
+			
+			String password;
+			//Read the SQL password from a file
+			BufferedReader reader = null;
+			try{
+				InputStream inputStream = getClass().getClassLoader().getResourceAsStream("SQLpw.txt");
+				reader = new BufferedReader(new InputStreamReader(inputStream));
+				password = reader.readLine();
+			}
+			catch (NullPointerException e){
+				e.getStackTrace();
+				password = "";
+			}
+			// create a mysql database connection
+			String myDriver = "com.mysql.jdbc.Driver";
+			String myUrl = "jdbc:mysql://localhost/lodstories";
+			Class.forName(myDriver);			
+			Connection connection = DriverManager.getConnection(myUrl, "root", password);
 
-                FileWriter fw = new FileWriter("data.csv",true); 
-                fw.write(msg + "\n");
-                fw.flush();
-                fw.close();
-                System.out.println(msg);               
+			Statement statement = connection.createStatement();  
+		    statement.setQueryTimeout(30);  // set timeout to 30 sec.
+		    
+		    if (chosen){
+		    	String stmt = "UPDATE path_explorer SET chosen=chosen+1,appearances=appearances+1 WHERE subject='"+subject+"' AND predicate='"+predicate+"' AND object='"+object+"'";
+			    int updated = 0;
+			    
+			    System.out.println(stmt);
+			    
+			    updated = statement.executeUpdate(stmt);
+			    
+			    //Triple does not exist in database, so insert it...though this seriously shouldn't get called
+			    if (updated==0){
+			    	System.out.println("Trying to rate a nonexistent triple as interesting...");
+			    	stmt= String.format("insert into path_explorer(subject, predicate, object,appearances,chosen) values('%s','%s','%s','%d','%d')", 
+				    		subject, predicate, object, 1,1);			    	
+			    	System.out.println(stmt);			    	
+				    statement.execute(stmt);				    				    
+			    }
+		    }
+		    else{
+			    String stmt = "UPDATE path_explorer SET appearances=appearances+1 WHERE subject='"+subject+"' AND predicate='"+predicate+"' AND object='"+object+"'";
+			    int updated = 0;
+			    System.out.println(stmt);
+			    updated = statement.executeUpdate(stmt);
+			    
+			    //Triple does not exist in database, so insert it
+			    if (updated==0){
+			    	stmt= String.format("insert into path_explorer(subject, predicate, object,appearances,chosen) values('%s','%s','%s','%d','%d')", 
+				    		subject, predicate, object, 1,0);
+			    	System.out.println(stmt);
+				    statement.execute(stmt);
+			    }
+		    }
+			
+            /*DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
+            Date date = new Date();
+            
+            String msg = dateFormat.format(date) + "," + subject + "," + predicate + "," + object + "," + chosen;
+            
+
+            FileWriter fw = new FileWriter("data.csv",true); 
+            fw.write(msg + "\n");
+            fw.flush();
+            fw.close();
+            System.out.println(msg);  */             
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			out.flush();
+			out.close();
 		}
     	
         response.setStatus(HttpServletResponse.SC_OK);
