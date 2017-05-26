@@ -10,7 +10,6 @@ import org.openrdf.repository.RepositoryException;
 
 public class LinkedDataTriple {
 	private int connectionParam = -1;
-	private double interestingness;
 	private LinkedDataNode subject;
 	private LinkedDataNode object;
 	private String predicate;

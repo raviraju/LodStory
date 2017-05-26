@@ -3,7 +3,6 @@ package edu.isi.serverbackend.Servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -86,7 +85,6 @@ public class AbstractFinderServlet extends HttpServlet{
 					Iterator<Var> vars = binding.vars();
 					String abstractString="";
 					String commentString="";
-					String typeString="";
 					String labelString="";
 					while(vars.hasNext()){
 						

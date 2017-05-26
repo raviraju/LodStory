@@ -34,23 +34,7 @@ public class LiveDemoPageServlet extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public LiveDemoPageServlet() {
-        super();       
-        /*try{
-            File file = new File("data.csv");
-            
-            // if file doesnt exists, then create it
-            if (!file.exists()) {
-                file.createNewFile();
-                System.out.println("create new file! Saved to: "+file.getAbsolutePath());
-            }
-            else{
-                System.out.println("File exists! Saved to: "+file.getAbsolutePath());
-            }
-        
-        } catch(Exception e){
-         System.out.println("exception create data.csv");   
-        }*/
-
+        super();
     }
 
     /**
@@ -128,18 +112,7 @@ public class LiveDemoPageServlet extends HttpServlet {
 				    statement.execute(stmt);
 			    }
 		    }
-			
-            /*DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
-            Date date = new Date();
-            
-            String msg = dateFormat.format(date) + "," + subject + "," + predicate + "," + object + "," + chosen;
-            
-
-            FileWriter fw = new FileWriter("data.csv",true); 
-            fw.write(msg + "\n");
-            fw.flush();
-            fw.close();
-            System.out.println(msg);  */             
+			         
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{

@@ -156,13 +156,13 @@ public class TripleRankRequest {
 			e.printStackTrace();
 		}
         System.out.println("Load Relationship Map");
-        for (String key : relationshipMap.keySet()) {
+        /*for (String key : relationshipMap.keySet()) {
             System.out.println("\t Key: " + key + ", Value: " + relationshipMap.get(key));
-        }
+        }*/
         System.out.println("Load Subject Map");
-        for (String key : subjectMap.keySet()) {
+        /*for (String key : subjectMap.keySet()) {
             System.out.println("\t Key: " + key + ", Value: " + subjectMap.get(key));
-        }
+        }*/
 
         for(int i = 0 ; i < samples.size(); i++){
 
@@ -256,15 +256,17 @@ public class TripleRankRequest {
          
          
         //delete some nodes so that the same relationsship will not be displayed
-        HashSet<String> relationSet = new HashSet<String>();
+        /*HashSet<String> relationSet = new HashSet<String>();
 		relationSet.clear();
 		int counter = 0;//make sure not removing to many nodes
         for(int i = 0; i < samples.size(); i++){
 			if(!relationSet.contains(samples.get(i).getLink().getPredicate())){
+				System.out.println("Adding predicate : " + samples.get(i).getLink().getPredicate());
 				relationSet.add(samples.get(i).getLink().getPredicate());
 				counter++;
 			}
 			else{
+				System.out.println("Removing duplicate predicate : " + samples.get(i).getLink().getPredicate());
 				samples.remove(i);//remove sample with duplicate predicates
 				i--;
 			}
@@ -274,7 +276,7 @@ public class TripleRankRequest {
 		}
         System.out.println("After removing samples whose predicates are duplicates");
         System.out.println("No of samples : " + samples.size());
-        
+        */
         if(samples.size() > 7){
 
         	//rank top 5 and randomly pick two
