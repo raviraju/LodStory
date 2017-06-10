@@ -7,13 +7,8 @@ import java.net.URLDecoder;
 import edu.isi.serverbackend.linkedData.LinkedDataTriple.CurrentNode;
 import edu.isi.serverbackend.feature.util.*;
 
-import org.openrdf.model.Literal;
-import org.openrdf.query.BindingSet;
 import org.openrdf.query.MalformedQueryException;
 import org.openrdf.query.QueryEvaluationException;
-import org.openrdf.query.QueryLanguage;
-import org.openrdf.query.TupleQuery;
-import org.openrdf.query.TupleQueryResult;
 import org.openrdf.repository.*;
 
 import com.hp.hpl.jena.graph.Node;
@@ -23,9 +18,10 @@ import com.hp.hpl.jena.sparql.engine.binding.Binding;
 
 
 public class LinkedDataNode {
-	public static final String LOCAL_SPARQL_ENDPOINT = "http://localhost:3030/integrated_aac/query";
+	
+	public static final String LOCAL_SPARQL_ENDPOINT = "http://data.americanartcollaborative.org/sparql_lod_aac";
 	public static final String DB_SPARQL_ENDPOINT = "http://dbpedia.org/sparql";
-	//public static final String LOCAL_SPARQL_ENDPOINT = "http://lodstories.isi.edu:3030/integrated_dbpedia/query";
+	//public static final String LOCAL_SPARQL_ENDPOINT = "http://localhost:3030/integrated_aac/query";
 
 	private String name;
 	private String uri;
@@ -182,9 +178,8 @@ public class LinkedDataNode {
 		
 		
 		
-		
-		String queryStr = "SELECT ?image ?predicate ?object ?label ?type WHERE {"
-				+ "GRAPH ?g { "
+		//+ "GRAPH ?g { "
+		String queryStr = "SELECT ?image ?predicate ?object ?label ?type WHERE {"				
     			+"{  SELECT ?predicate ?object WHERE { <"+ uri +"> ?predicate ?object } }"
     			+ "?object <http://www.w3.org/2000/01/rdf-schema#label> ?label. "
                 + "OPTIONAL { ?object <http://dbpedia.org/ontology/thumbnail> ?image. "
@@ -193,7 +188,7 @@ public class LinkedDataNode {
     			+ "|| ?type=  <http://dbpedia.org/ontology/Place> "
     			+ "|| ?type=  <http://dbpedia.org/ontology/Organisation> "
     			+ "|| ?type = <http://dbpedia.org/ontology/Work>)"
-    			+ "}}} LIMIT 500";
+    			+ "}} LIMIT 500";
 		System.out.println("\t Using SPARQL EndPoint: " + LOCAL_SPARQL_ENDPOINT);
 		System.out.println("\t RUN SPARQL: " + queryStr);
     	query = QueryFactory.create(queryStr);
@@ -311,9 +306,8 @@ public class LinkedDataNode {
 		
 		
 		
-		
-		String queryStr = "SELECT ?image ?subject ?predicate ?label ?type WHERE {"
-				+ "GRAPH ?g { "
+    	//+ "GRAPH ?g { "
+		String queryStr = "SELECT ?image ?subject ?predicate ?label ?type WHERE {"				
     			+"{  SELECT ?subject ?predicate WHERE { ?subject ?predicate <"+ uri +"> } }"
     			+ "?subject <http://www.w3.org/2000/01/rdf-schema#label> ?label. "
                 + "OPTIONAL { ?subject <http://dbpedia.org/ontology/thumbnail> ?image. "
@@ -322,7 +316,7 @@ public class LinkedDataNode {
     			+ "|| ?type=  <http://dbpedia.org/ontology/Place> "
     			+ "|| ?type=  <http://dbpedia.org/ontology/Organisation> "
     			+ "|| ?type = <http://dbpedia.org/ontology/Work>)"
-    			+ "}}} LIMIT 500";
+    			+ "}} LIMIT 500";
 		System.out.println("\t Using SPARQL EndPoint: " + LOCAL_SPARQL_ENDPOINT);
 		System.out.println("\t RUN SPARQL: " + queryStr);
     	query = QueryFactory.create(queryStr);
